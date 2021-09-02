@@ -1,11 +1,12 @@
 from typing import Text
 import PySimpleGUI as sg
+from src import constexpr as const
 from src import Downloader
 sg.theme('DarkGrey14')
 
 layout =[[sg.Text('Youtube Link', size=(12, 1)), sg.InputText(key='-YTLINK-')],
-          [sg.Radio('MP3 format', "FORMAT_CHOSSER", default=True, key='-FORMAT-')],
-          [sg.Radio('Video format', "FORMAT_CHOSSER", default=False)],
+          [sg.Radio('Audio', "FORMAT_CHOSSER", default=True, key='-FORMAT-')],
+          [sg.Radio('Video', "FORMAT_CHOSSER", default=False)],
           [sg.Button('Download')],
           [sg.Button('Exit')]
         ]
@@ -19,5 +20,10 @@ while True:  # Event Loop
         # Exit the program
         break
     if event == 'Download':
-        print(values['-YTLINK-'])
-        Downloader.download(values['-YTLINK-'], 'mp4')
+        if values['-YTLINK-'] is None:
+            print('NOT OK')
+        elif values['-FORMAT-'] is True:
+            Downloader.download(values['-YTLINK-'], const.AUDIO_FORMAT)
+        else:
+            Downloader.download(values['-YTLINK-'], const.VIDEO_FORMAT)
+
