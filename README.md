@@ -28,9 +28,9 @@ Audio files are downloaded under Downloads/Audio and video files under Downloads
 
 * [DONE]  Download Audio/Video files from YT links
 * [DONE]  Store files separately in corresponding folders
-* [TO DO] Add multiple links into a list
+* [DONE] Add multiple links into a list
 * [TO DO] Add more tests
-* [TO DO] Download a list of YT links, so multiple videos/audios at once
+* [DONE] Download a list of YT links, so multiple videos/audios at once
 
 
 ### Built With
