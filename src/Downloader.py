@@ -1,3 +1,4 @@
+from os import link
 from pytube import YouTube
 import glob
 import sys
@@ -5,11 +6,31 @@ import pytube
 sys.path.append("./")
 from src.constexpr import *
 
-def download(download_link, file_format):
-    youtube = YouTube(download_link)
-    if file_format is AUDIO_FORMAT:
-        video = youtube.streams.get_audio_only()
-        video.download('./Downloads/Audios', None, file_format)
-    elif file_format is VIDEO_FORMAT:
-        video = youtube.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1]
-        video.download('./Downloads/Videos', None, file_format)
+class Downloader:
+    def __init__(self):
+        self.link_to_download_list = []
+    
+    def set_link_list(self, link_to_download_list):
+        self.link_to_download_list = link_to_download_list
+
+    def get_link_list(self):
+        return self.link_to_download_list
+
+    def download_single_audio(self, link):
+        ytube = YouTube(link)
+        audio = ytube.streams.get_audio_only()
+        audio.download('./Downloads/Audios')
+    
+    def download_single_video(self, link):
+        ytube = YouTube(link)
+        video = ytube.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1]
+        video.download('./Downloads/Videos')
+    
+    def download_all_audio(self):
+        for link in self.link_to_download_list:
+            self.download_single_audio(link)
+            
+    
+    def download_all_video(self):
+        for link in self.link_to_download_list:
+            self.download_single_video(link)

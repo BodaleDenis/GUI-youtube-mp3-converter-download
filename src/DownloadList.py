@@ -16,8 +16,12 @@ class DownloadList:
     def remove_index(self, index):
         self.link_list.pop(index)
     
+    def get_link_list(self):
+        return self.link_list
+    
     def show_list(self):
-        print(self.video_titles)
+        video_titles_str = '\n'.join(self.video_titles)
+        return video_titles_str
 
 
 
