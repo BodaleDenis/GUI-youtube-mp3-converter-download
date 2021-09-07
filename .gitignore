@@ -2,3 +2,8 @@ src/__pycache__/Downloader.cpython-38.pyc
 src/__pycache__/constexpr.cpython-38.pyc
 src/__pycache__/DownloadList.cpython-38.pyc
 commitMsg
+.vscode/settings.json
+tests/__pycache__/test_downloadlist.cpython-38-pytest-6.2.4.pyc
+tests/__pycache__/test_utils.cpython-38.pyc
+tests/__pycache__/test_youtube_downloader.cpython-38-pytest-6.2.4.pyc
+tests/__pycache__/test_utils.cpython-38-pytest-6.2.4.pyc

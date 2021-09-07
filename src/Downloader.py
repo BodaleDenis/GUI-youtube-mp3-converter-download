@@ -1,4 +1,3 @@
-from os import link
 from pytube import YouTube
 import glob
 import sys
@@ -26,11 +25,11 @@ class Downloader:
         video = ytube.streams.filter(progressive=True, file_extension='mp4').order_by('resolution')[-1]
         video.download('./Downloads/Videos')
     
-    def download_all_audio(self):
+    def download_all_audios(self):
         for link in self.link_to_download_list:
             self.download_single_audio(link)
             
     
-    def download_all_video(self):
+    def download_all_videos(self):
         for link in self.link_to_download_list:
             self.download_single_video(link)

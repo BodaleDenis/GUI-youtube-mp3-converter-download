@@ -28,18 +28,40 @@ while True:  # Event Loop
         if values['-YTLINK-'] is const.EMPTY_STRING:
             sg.popup_error(const.ERROR_MESSAGE_EMPTY, title='Missing YouTube link')
         elif values['-FORMAT-'] is True:
-            dwnloader.download_single_audio(values['-YTLINK-'])
+            try:
+                dwnloader.download_single_audio(values['-YTLINK-'])
+            except:
+                sg.popup_error(const.ERROR_GENERAL)
+
         else:
-            dwnloader.download_single_video(values['-YTLINK-'])
+            try:
+                dwnloader.download_single_video(values['-YTLINK-'])
+            except:
+                sg.popup_error(const.ERROR_GENERAL)
     
     if event == 'Download list':
-        list_to_download = dlist.get_link_list()
-        dwnloader.set_link_list(list_to_download)
-        dwnloader.download_all_audio()
+        if dlist.is_list_empty() is True:
+            sg.popup_error(const.ERROR_LIST_EMPTY, title='Missing download list')
+        elif values['-FORMAT-'] is True:
+            try:
+                dwnloader.download_all_audios()
+            except:
+                sg.popup_error(const.ERROR_GENERAL)
+        else:
+            try:
+                dwnloader.download_all_videos()
+            except:
+                sg.popup_error(const.ERROR_GENERAL)
 
     if event == 'Add to list':
-        dlist.add_to_list(values['-YTLINK-'])
-        print(dlist.link_list)
+        if values['-YTLINK-'] is const.EMPTY_STRING:
+            sg.popup_error(const.ERROR_MESSAGE_EMPTY, title='Missing YouTube link')
+        else:
+            try:
+                dlist.add_to_list(values['-YTLINK-'])
+                print(dlist.link_list)
+            except:
+                sg.popup_error(const.INVALID_LINK_ERROR)
     
     if event == 'View list':
         sg.popup_ok((dlist.show_list()))
