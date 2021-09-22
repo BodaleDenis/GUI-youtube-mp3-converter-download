@@ -40,6 +40,7 @@ while True:  # Event Loop
                 sg.popup_error(const.ERROR_GENERAL)
     
     if event == 'Download list':
+        dwnloader.set_link_list(dlist.get_link_list())
         if dlist.is_list_empty() is True:
             sg.popup_error(const.ERROR_LIST_EMPTY, title='Missing download list')
         elif values['-FORMAT-'] is True:
